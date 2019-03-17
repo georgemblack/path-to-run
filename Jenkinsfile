@@ -43,7 +43,16 @@ pipeline {
             steps {
                 sh 'docker container stop ${PROJECT_NAME}'
                 sh 'docker container rm ${PROJECT_NAME}'
-                sh 'docker run -d -p ${DEV_ENVIRONMENT_PORT}:8080 --name ${PROJECT_NAME} ${PROJECT_NAME}:latest'
+                sh '''
+                    docker run -d \
+                    -e STRAVA_CLIENT_ID=${STRAVA_CLIENT_ID} \
+                    -e STRAVA_CLIENT_SECRET=${STRAVA_CLIENT_SECRET} \
+                    -e STRAVA_REFRESH_TOKEN=${STRAVA_REFRESH_TOKEN} \
+                    -p ${DEV_ENVIRONMENT_PORT}:8080 \
+                    --name ${PROJECT_NAME} \
+                    ${PROJECT_NAME}:latest
+
+                '''
             }
         }
     }
