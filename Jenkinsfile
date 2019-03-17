@@ -25,7 +25,8 @@ pipeline {
         stage('Build Docker Image') {
             agent any
             steps {
-                sh 'docker build -t ${PROJECT_NAME} .'
+                sh 'docker build -t ${PROJECT_NAME}:latest .'
+                sh 'docker image prune -f'
             }
         }
         stage('Deploy to Dev Environment') {
