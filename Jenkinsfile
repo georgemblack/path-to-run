@@ -12,6 +12,12 @@ pipeline {
                sh 'mvn clean install'
             }
         }
+        stage('Archive Artifact') {
+            agent any
+            steps {
+                archiveArtifacts 'target/*.jar'
+            }
+        }
         stage('Build Docker Image') {
             agent any
             steps {
