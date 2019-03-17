@@ -9,8 +9,8 @@ pipeline {
 
         POSTGRES_HOST = 'localhost'
         POSTGRES_PORT = '9002'
-        POSTGRES_USERNAME = credentials('${PROJECT_NAME}-postgres-username')
-        POSTGRES_PASSWORD = credentials('${PROJECT_NAME}-postgres-password')
+        POSTGRES_USERNAME = credentials('path-to-run-postgres-username')
+        POSTGRES_PASSWORD = credentials('path-to-run-postgres-password')
     }
     agent none
     stages {
