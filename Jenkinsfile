@@ -2,6 +2,10 @@ pipeline {
     environment {
         PROJECT_NAME = 'path-to-run'
         DEV_ENVIRONMENT_PORT = '9001'
+
+        STRAVA_CLIENT_ID = credentials('strava-client-id')
+        STRAVA_CLIENT_SECRET = credentials('strava-client-secret')
+        STRAVA_REFRESH_TOKEN = credentials('strava-refresh-token')
     }
     agent none
     stages {
@@ -13,7 +17,12 @@ pipeline {
                 }
             }
             steps {
-               sh 'mvn clean install'
+                sh '''
+                    mvn clean install \
+                        -DSTRAVA_CLIENT_ID=${STRAVA_CLIENT_ID} \
+                        -DSTRAVA_CLIENT_SECRET=${STRAVA_CLIENT_SECRET} \
+                        -DSTRAVA_REFRESH_TOKEN=${STRAVA_REFRESH_TOKEN}
+                '''
             }
         }
         stage('Archive Artifact') {
