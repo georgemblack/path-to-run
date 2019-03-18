@@ -58,6 +58,7 @@ pipeline {
                     -e POSTGRES_USERNAME=${POSTGRES_USERNAME} \
                     -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
                     -p ${DEV_ENVIRONMENT_PORT}:8080 \
+                    --net=${PROJECT_NAME}-net
                     --name ${PROJECT_NAME} \
                     ${PROJECT_NAME}:latest
 
