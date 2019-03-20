@@ -14,9 +14,8 @@ public class PathToRunController {
     @Autowired
     PathToRunService pathToRunService;
 
-    @GetMapping("/test")
+    @GetMapping("/region")
     public String testEndpoint() {
-        pathToRunService.test();
-        return "All Good!";
+        return pathToRunService.getAllCoordinatesForRegion();
     }
 }
