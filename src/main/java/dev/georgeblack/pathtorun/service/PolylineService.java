@@ -3,7 +3,6 @@ package dev.georgeblack.pathtorun.service;
 import com.google.maps.internal.PolylineEncoding;
 import com.google.maps.model.LatLng;
 import dev.georgeblack.pathtorun.model.Coordinate;
-import dev.georgeblack.pathtorun.model.Route;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,8 +17,7 @@ import java.util.List;
 public class PolylineService {
     Logger logger = LoggerFactory.getLogger(PolylineService.class);
 
-    public Route decodePolyline(String polyline) {
-
+    public List<Coordinate> decodePolyline(String polyline) {
         // decode to Google LatLng
         List<LatLng> googleCoordinates = PolylineEncoding.decode(polyline);
 
@@ -30,6 +28,6 @@ public class PolylineService {
         }
 
         logger.debug("Decoded polyline: " + polyline);
-        return new Route(coordinates);
+        return coordinates;
     }
 }
