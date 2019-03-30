@@ -33,7 +33,7 @@ public class PathToRunService {
 
         for (StravaSegment segment: segments.getSegments()) {
             List<Coordinate> coordinates = polylineService.decodePolyline(segment.getEncodedPolyline());
-            RunnablePath runnablePath = new RunnablePath(coordinates);
+            RunnablePath runnablePath = new RunnablePath(coordinates, segment.getEncodedPolyline());
             repository.save(runnablePath);
         }
 

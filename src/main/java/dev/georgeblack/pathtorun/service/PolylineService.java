@@ -30,4 +30,14 @@ public class PolylineService {
         logger.debug("Decoded polyline: " + polyline);
         return coordinates;
     }
+
+    public String encodePolyline(List<Coordinate> coordinates) {
+        LatLng[] googleCoordinates = new LatLng[coordinates.size()];
+        for (int i = 0; i < coordinates.size(); i++) {
+            Coordinate coordinate = coordinates.get(i);
+            googleCoordinates[i] = new LatLng(coordinate.getLat(), coordinate.getLon());
+        }
+
+        return PolylineEncoding.encode(googleCoordinates);
+    }
 }
