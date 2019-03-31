@@ -4,8 +4,8 @@
   "description": "Front-end code for Path to Run",
   "license": "MIT",
   "scripts": {
-    "build": "parcel build index.html",
-    "build:watch": "parcel watch index.html",
+    "build": "parcel build src/index.html",
+    "build:watch": "parcel watch src/index.html",
     "serve": "http-server dist/",
     "clean": "rm -rf dist node_modules *.log .cache",
     "copy": "cp -r ./dist/* ../path-to-run-server/src/main/resources/public/"
