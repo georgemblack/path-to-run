@@ -1,0 +1,21 @@
+{
+  "name": "path-to-run-client",
+  "author": "George Black",
+  "description": "Front-end code for Path to Run",
+  "license": "MIT",
+  "scripts": {
+    "build": "parcel build index.html",
+    "build:dev": "parcel watch index.html",
+    "serve:dev": "http-server dist/",
+    "clean": "rm -rf dist node_modules *.log .cache"
+  },
+  "dependencies": {
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^2.6.0",
+    "cssnano": "^4.1.10",
+    "http-server": "^0.11.1",
+    "vue-template-compiler": "^2.6.10"
+  }
+}

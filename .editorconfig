@@ -4,7 +4,7 @@ root = true
 end_of_line = lf
 insert_final_newline = true
 
-[*.{json,yml,yaml}]
+[*.{js,json,yml,yaml,html,vue}]
 indent_style = space
 indent_size = 2
 
