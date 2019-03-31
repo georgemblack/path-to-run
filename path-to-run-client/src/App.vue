@@ -1,15 +1,16 @@
 <template>
-  <h1>{{ greeting }}, Vuejs</h1>
+  <div>
+    <h1>Path to Run</h1>
+    <route-map></route-map>
+  </div>
 </template>
 
 <script>
+import RouteMap from './components/RouteMap';
+
 export default {
   name: 'App',
-  data() {
-    return {
-      greeting: 'Howdy'
-    };
-  }
+  components: { RouteMap }
 }
 </script>
 
