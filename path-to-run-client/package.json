@@ -5,9 +5,10 @@
   "license": "MIT",
   "scripts": {
     "build": "parcel build index.html",
-    "build:dev": "parcel watch index.html",
-    "serve:dev": "http-server dist/",
-    "clean": "rm -rf dist node_modules *.log .cache"
+    "build:watch": "parcel watch index.html",
+    "serve": "http-server dist/",
+    "clean": "rm -rf dist node_modules *.log .cache",
+    "copy": "cp -r ./dist/* ../path-to-run-server/src/main/resources/public/"
   },
   "dependencies": {
     "vue": "^2.6.10"

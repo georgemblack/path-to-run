@@ -14,7 +14,28 @@ pipeline {
     }
     agent none
     stages {
-        stage('Build and Test') {
+        stage('Build Client') {
+            agent {
+                docker {
+                    image 'node:11-alpine'
+                }
+            }
+            steps {
+                dir('path-to-run-client') {
+                    sh '''
+                        npm install -g parcel-bundler
+                        npm install
+                        npm run build
+                    '''
+                }
+            }
+        }
+        stage('Copy Client Build to Server') {
+            sh '''
+                cp -r ./path-to-run-client/dist/* ./path-to-run-server/src/main/resources/public/
+            '''
+        }
+        stage('Build Server') {
             agent {
                 docker {
                     image 'maven:3.6-jdk-11'
