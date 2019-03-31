@@ -27,9 +27,15 @@ public class PathToRunService {
     @Autowired
     RunnablePathRepository repository;
 
-    public String getAllCoordinatesForRegion() {
-        double[] bounds = {41.868794, -87.653169, 41.900912, -87.603218};
-        StravaSegments segments = stravaSegmentRepository.getSegmentsInRegion(new Region(bounds));
+    @Autowired
+    RegionService regionService;
+
+    public String start(double startLat, double startLng, int distance) {
+        Coordinate start = new Coordinate(startLat, startLng);
+        logger.info(String.format("Started new Path to Run request from %s, for %s miles", start, distance));
+
+        Region region = regionService.buildRegionFromStartingPoint(start, distance);
+        StravaSegments segments = stravaSegmentRepository.getSegmentsInRegion(region);
 
         for (StravaSegment segment: segments.getSegments()) {
             List<Coordinate> coordinates = polylineService.decodePolyline(segment.getEncodedPolyline());
