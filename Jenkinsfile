@@ -22,18 +22,20 @@ pipeline {
                 }
             }
             steps {
-                sh '''
-                    mvn clean install \
+                dir('path-to-run-server') {
+                    sh '''
+                        mvn clean install \
                         -DSTRAVA_CLIENT_ID=${STRAVA_CLIENT_ID} \
                         -DSTRAVA_CLIENT_SECRET=${STRAVA_CLIENT_SECRET} \
                         -DSTRAVA_REFRESH_TOKEN=${STRAVA_REFRESH_TOKEN}
-                '''
+                    '''
+                }
             }
         }
         stage('Archive Artifact') {
             agent any
             steps {
-                archiveArtifacts 'target/*.jar'
+                archiveArtifacts 'path-to-run-server/target/*.jar'
             }
         }
         stage('Build Docker Image') {
