@@ -31,9 +31,12 @@ pipeline {
             }
         }
         stage('Copy Client Build to Server') {
-            sh '''
-                cp -r ./path-to-run-client/dist/* ./path-to-run-server/src/main/resources/public/
-            '''
+            agent any
+            steps {
+                sh '''
+                    cp -r ./path-to-run-client/dist/* ./path-to-run-server/src/main/resources/public/
+                '''
+            }
         }
         stage('Build Server') {
             agent {
