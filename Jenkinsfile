@@ -7,8 +7,6 @@ pipeline {
         STRAVA_CLIENT_SECRET = credentials('strava-client-secret')
         STRAVA_REFRESH_TOKEN = credentials('strava-refresh-token')
 
-        POSTGRES_HOST = 'path-to-run-db'
-        POSTGRES_PORT = '5432'
         POSTGRES_USERNAME = credentials('path-to-run-postgres-username')
         POSTGRES_PASSWORD = credentials('path-to-run-postgres-password')
     }
@@ -79,10 +77,9 @@ pipeline {
                     -e STRAVA_CLIENT_ID=${STRAVA_CLIENT_ID} \
                     -e STRAVA_CLIENT_SECRET=${STRAVA_CLIENT_SECRET} \
                     -e STRAVA_REFRESH_TOKEN=${STRAVA_REFRESH_TOKEN} \
-                    -e POSTGRES_HOST=${POSTGRES_HOST} \
-                    -e POSTGRES_PORT=${POSTGRES_PORT} \
                     -e POSTGRES_USERNAME=${POSTGRES_USERNAME} \
                     -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
+                    -e SPRING_PROFILES_ACTIVE=prod \
                     -p ${DEV_ENVIRONMENT_PORT}:8080 \
                     --net=${PROJECT_NAME}-net \
                     --name ${PROJECT_NAME} \
