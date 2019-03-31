@@ -17,7 +17,7 @@ pipeline {
         stage('Build Client') {
             agent {
                 docker {
-                    image 'node:11-alpine'
+                    image 'node:11-stretch'
                 }
             }
             steps {
