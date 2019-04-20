@@ -40,12 +40,11 @@ input {
   width: 100%;
   padding: 0.5em 0.65em;
   font-size: 1em;
-  box-sizing: border-box;
   font-family: $default-font-family;
   font-weight: $default-font-weight;
   color: $default-font-color-dark;
   border: 2px solid rgba($default-font-color-dark, 0.2);
-  border-radius: 0.5em;
+  border-radius: 0.25em;
   outline: none;
   &:focus {
     border: 2px solid $highlight-color;

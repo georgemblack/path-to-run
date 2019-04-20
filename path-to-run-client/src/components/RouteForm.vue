@@ -1,11 +1,11 @@
 <template>
   <div class="route-form">
     <form @submit.prevent="submitForm">
-      <div class="address">
-        <label for="address">Starting from...</label>
+      <div class="location">
+        <label for="location">Starting from...</label>
         <input
-          name="address"
-          v-model.trim="address"
+          name="location"
+          ref="location"
           type="text"
           placeholder="77 West Wacker Dr, Chicago IL"
         >
@@ -31,7 +31,6 @@
         <button>Find Routes!</button>
       </div>
     </form>
-    <loading-spinner v-show="routesRequestInProgress"></loading-spinner>
   </div>
 </template>
 
@@ -40,10 +39,38 @@ export default {
   name: 'RouteForm',
   data() {
     return {
-      address: '',
+      startLat: '',
+      startLng: '',
       distance: '',
       shape: ''
     };
+  },
+  methods: {
+    submitForm() {
+      console.log('Form submitted with data:');
+      console.log({
+        startLat: this.startLat,
+        startLng: this.startLng,
+        distance: this.distance,
+        shape: this.shape
+      });
+    },
+    handleLocationInput(place) {
+      this.startLat = place.geometry.location.lat();
+      this.startLng = place.geometry.location.lng();
+    }
+  },
+  /**
+   * Init Google Places autocomplete
+   */
+  mounted() {
+    this.autocomplete = new google.maps.places.Autocomplete(this.$refs.location, {
+      types: ['geocode']
+    });
+    this.autocomplete.setFields(['geometry']); // return only coordinate data
+    this.autocomplete.addListener('place_changed', () => {
+      this.handleLocationInput(this.autocomplete.getPlace());
+    });
   }
 };
 </script>
@@ -59,6 +86,7 @@ export default {
     margin-top: 0.5em;
   }
   .submit {
+    text-align: center;
     margin-top: 2em;
   }
 }
