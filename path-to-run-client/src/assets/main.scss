@@ -1,0 +1,105 @@
+$default-font-family: 'system-ui', sans-serif;
+$default-font-weight: 900;
+$default-font-weight-med: 600;
+$default-font-color-light: #f7f7f7;
+$default-font-color-dark: #3a3a3a;
+
+$highlight-color: #1ba39c;
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Primary Elements */
+body {
+  margin: 1em auto;
+  padding: 0 1em 0 1em;
+  max-width: 75em;
+  background: linear-gradient(70deg, #134e5e, #71b280);
+}
+
+h1, h2, h3, p {
+  font-family: $default-font-family;
+  font-weight: $default-font-weight;
+  color: $default-font-color-dark;
+}
+
+/* Forms */
+label {
+  display: inline-block;
+  margin-bottom: 0.25em;
+  font-family: $default-font-family;
+  font-weight: $default-font-weight-med;
+  color: lighten($default-font-color-dark, 25%);
+}
+
+input {
+  display: inline-block;
+  width: 100%;
+  padding: 0.5em 0.65em;
+  font-size: 1em;
+  box-sizing: border-box;
+  font-family: $default-font-family;
+  font-weight: $default-font-weight;
+  color: $default-font-color-dark;
+  border: 2px solid rgba($default-font-color-dark, 0.2);
+  border-radius: 0.5em;
+  outline: none;
+  &:focus {
+    border: 2px solid $highlight-color;
+  }
+  &::placeholder {
+    color: rgba($default-font-color-dark, 0.2);
+  }
+}
+
+select {
+  font-size: 1em;
+}
+
+button {
+  display: inline-block;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  font-family: $default-font-family;
+  font-weight: $default-font-weight;
+  color: $default-font-color-light;
+  background-color: $highlight-color;
+  border: none;
+  border-radius: 0.25em;
+  outline: none;
+  &:hover {
+    background-color: darken($highlight-color, 10%);
+  }
+  &:active {
+    background-color: darken($highlight-color, 15%);
+  }
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+}
+.title {
+  color: $default-font-color-light;
+}
+.icons {
+  svg {
+    height: 2em;
+    width: 2em;
+    g {
+      fill: $default-font-color-light;
+    }
+  }
+}
+
+/* Footer */ 
+footer {
+  margin-top: 1em;
+  p {
+    color: rgba($default-font-color-light, 0.25);
+  }
+}

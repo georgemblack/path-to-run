@@ -1,8 +1,7 @@
 <template>
-  <div>
-    <h1>Path to Run</h1>
-    <route-map></route-map>
+  <div class="path-to-run">
     <route-form></route-form>
+    <route-map></route-map>
   </div>
 </template>
 
@@ -18,8 +17,12 @@ export default {
 
 <!-- WARNING: Not scoped -->
 <style lang="scss">
-body {
-  max-width: 52em;
-  margin: 2em auto 2em auto;
+.path-to-run {
+  display: flex;
+  margin-top: 0.5em;
+  border-radius: 0.35em;
+  overflow: hidden;
+  background-color: #f7f7f7;
+  box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.1);
 }
 </style>

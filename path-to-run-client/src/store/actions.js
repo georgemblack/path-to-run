@@ -1,4 +1,4 @@
-const getBase = () => {
+const getBaseUrl = () => {
   const base = window.location.host;
   const scheme = (base.includes('localhost')) ? 'http' : 'https';
   return `${scheme}://${base}`;
@@ -12,7 +12,7 @@ export default {
   getRoutes: ({ commit }, params) => {
     commit('setRoutesRequestInProgress', true);
 
-    const base = getBase();
+    const base = getBaseUrl();
     const qs = getQueryString(params);
     const url = `${base}/path-to-run/routes${qs}`;
     console.log(`Sending request to: ${url}`);
@@ -20,8 +20,13 @@ export default {
     fetch(url, {
       method: 'GET'
     })
+    .then(response => response.json())
     .then(response => {
-      console.log(response);
+      commit('setRoutes', response.routes);
+      commit('setRoutesRequestInProgress', false);
+    })
+    .catch(err => {
+      console.log('There was an error');
       commit('setRoutesRequestInProgress', false);
     });
   }

@@ -1,22 +1,14 @@
 <template>
-  <div id="map" style="width: 800px; height: 600;"></div>
+  <div class="route-map" style="width:850px;height:600;background-color:gray">
+    <p>Placeholder for map</p>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'RouteMap',
-  mounted() {
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZ2VvcmdlYmxhY2siLCJhIjoiY2p0eDlxN2gxMmd1YjQ0bnJpNjZ4dzZmNCJ9.AVI4_TOJQgcBzaLhndmyHQ';
-    var map = new mapboxgl.Map({
-     container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11'
-    });
-  }
-}
+  name: 'RouteMap'
+};
 </script>
 
 <style lang="scss" scoped>
-#map {
-  border-radius: 0.5em;
-}
 </style>
