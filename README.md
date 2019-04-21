@@ -28,9 +28,8 @@ docker container run -d \
 Build client:
 ```
 cd client
-npm install -g parcel-bundler
-npm install
-npm run build
+yarn
+yarn build
 ```
 
 Build server:

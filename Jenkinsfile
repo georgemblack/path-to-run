@@ -23,8 +23,8 @@ pipeline {
                     steps {
                         dir('client') {
                             sh '''
-                                npm install -g parcel-bundler
-                                npm install
+                                npm install -g yarn
+                                yarn
                             '''
                         }
                     }
@@ -32,14 +32,14 @@ pipeline {
                 stage('Lint Client') {
                     steps {
                         dir('client') {
-                            sh 'npm run lint'
+                            sh 'yarn lint'
                         }
                     }
                 }
                 stage('Build Client') {
                     steps {
                         dir('client') {
-                            sh 'npm run build'
+                            sh 'yarn build'
                         }
                     }
                 }
