@@ -63,7 +63,11 @@
         </select>
       </div>
       <div class="submit">
-        <button>Find Routes!</button>
+        <route-form-submit-button
+          :distance="distance"
+          :shape="shape"
+          :loading="requestInProgress"
+        ></route-form-submit-button>
       </div>
     </form>
   </div>
@@ -72,18 +76,20 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
+import RouteFormSubmitButton from'./RouteFormSubmitButton'
+
 export default {
   name: 'RouteForm',
+  components: { RouteFormSubmitButton },
   data() {
     return {
       distance: '',
-      shape: ''
+      shape: '',
+      requestInProgress: false
     }
   },
   computed: {
     ...mapGetters([
-      'startLocation',
-      'startLocationExists',
       'startLocationLat',
       'startLocationLng'
     ])
@@ -109,7 +115,10 @@ export default {
         distance: this.distance,
         shape: this.shape
       }
-      this.getRoutes(requestParams)
+      this.requestInProgress = true
+      this.getRoutes(requestParams).then(() => {
+        this.requestInProgress = false
+      })
     },
     handleLocationInput(place) {
       this.setStartLocation(place)
