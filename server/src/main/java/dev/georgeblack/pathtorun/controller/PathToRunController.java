@@ -23,7 +23,6 @@ public class PathToRunController {
         produces = "application/json"
     )
     public RoutesResponse routes(RoutesRequest routesRequest) {
-        return new RoutesResponse("All good!");
-        //return pathToRunService.start(startLat, startLng, distance);
+        return pathToRunService.getRoutes(routesRequest);
     }
 }
