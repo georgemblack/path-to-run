@@ -15,7 +15,7 @@ export default {
   getRoutes: ({ commit }, params) => {
     const base = getBaseUrl()
     const qs = getQueryString(params)
-    const url = `${base}/path-to-run/routes${qs}`
+    const url = `${base}/api/routes${qs}`
     console.log(`Sending request to: ${url}`)
 
     fetch(url, {
