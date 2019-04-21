@@ -2,7 +2,8 @@
   <div
     ref="map"
     class="route-map"
-  />
+  >
+  </div>
 </template>
 
 <script>

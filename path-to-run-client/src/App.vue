@@ -1,7 +1,7 @@
 <template>
   <div class="path-to-run">
-    <route-form />
-    <route-map />
+    <route-form></route-form>
+    <route-map></route-map>
   </div>
 </template>
 
