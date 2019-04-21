@@ -23,6 +23,7 @@ export default {
     })
       .then(response => response.json())
       .then(response => {
+        console.log(response)
         commit('SET_ROUTES', response.routes)
       })
       .catch(err => {
