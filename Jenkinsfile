@@ -19,7 +19,7 @@ pipeline {
                 }
             }
             stages {
-                stage('Install Dependencies') {
+                stage('Install Client Dependencies') {
                     steps {
                         dir('client') {
                             sh '''
