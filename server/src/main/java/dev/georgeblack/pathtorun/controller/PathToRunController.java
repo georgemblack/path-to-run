@@ -1,12 +1,13 @@
 package dev.georgeblack.pathtorun.controller;
 
+import dev.georgeblack.pathtorun.model.api.RoutesRequest;
+import dev.georgeblack.pathtorun.model.api.RoutesResponse;
 import dev.georgeblack.pathtorun.service.PathToRunService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,11 +22,8 @@ public class PathToRunController {
         value = "/routes",
         produces = "application/json"
     )
-    public String routes(
-        @RequestParam("startLat") double startLat,
-        @RequestParam("startLng") double startLng,
-        @RequestParam("distance") int distance
-    ) {
-        return pathToRunService.start(startLat, startLng, distance);
+    public RoutesResponse routes(RoutesRequest routesRequest) {
+        return new RoutesResponse("All good!");
+        //return pathToRunService.start(startLat, startLng, distance);
     }
 }
