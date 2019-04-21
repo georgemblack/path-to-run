@@ -4,6 +4,8 @@ export default {
    * If object is empty, location has not been set
    */
   startLocation: {},
-  routesRequestInProgress: false,
+  /**
+   * Routes returned from Path to Run API
+   */
   routes: []
 }
