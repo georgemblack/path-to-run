@@ -1,13 +1,13 @@
 <template>
   <div class="path-to-run">
-    <route-form></route-form>
-    <route-map></route-map>
+    <route-form />
+    <route-map />
   </div>
 </template>
 
 <script>
-import RouteForm from './components/RouteForm';
-import RouteMap from './components/RouteMap';
+import RouteForm from './components/RouteForm'
+import RouteMap from './components/RouteMap'
 
 export default {
   name: 'App',
