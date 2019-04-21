@@ -12,19 +12,36 @@ pipeline {
     }
     agent none
     stages {
-        stage('Build Client') {
+        stage('Lint and Build Client') {
             agent {
                 docker {
                     image 'node:11-stretch'
                 }
             }
-            steps {
-                dir('path-to-run-client') {
-                    sh '''
-                        npm install -g parcel-bundler
-                        npm install
-                        npm run build
-                    '''
+            stages {
+                stage('Install Dependencies') {
+                    steps {
+                        dir('path-to-run-client') {
+                            sh '''
+                                npm install -g parcel-bundler
+                                npm install
+                            '''
+                        }
+                    }
+                }
+                stage('Lint Client') {
+                    steps {
+                        dir('path-to-run-client') {
+                            sh 'npm run lint'
+                        }
+                    }
+                }
+                stage('Build Client') {
+                    steps {
+                        dir('path-to-run-client') {
+                            sh 'npm run build'
+                        }
+                    }
                 }
             }
         }
