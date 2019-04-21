@@ -1,8 +1,3 @@
-import {
-  SET_START_LOCATION,
-  SET_ROUTES
-} from './mutations'
-
 const getBaseUrl = () => {
   const base = window.location.host
   const scheme = (base.includes('localhost')) ? 'http' : 'https'
@@ -15,7 +10,7 @@ const getQueryString = (params) => {
 
 export default {
   setStartLocation: ({ commit }, place) => {
-    commit(SET_START_LOCATION, place)
+    commit('SET_START_LOCATION', place)
   },
   getRoutes: ({ commit }, params) => {
     const base = getBaseUrl()
@@ -28,7 +23,7 @@ export default {
     })
       .then(response => response.json())
       .then(response => {
-        commit(SET_ROUTES, response.routes)
+        commit('SET_ROUTES', response.routes)
       })
       .catch(err => {
         console.log(`There was an error with the routes request: ${err}`)

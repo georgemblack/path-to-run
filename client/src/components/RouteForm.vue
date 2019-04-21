@@ -83,7 +83,9 @@ export default {
   computed: {
     ...mapGetters([
       'startLocation',
-      'startLocationExists'
+      'startLocationExists',
+      'startLocationLat',
+      'startLocationLng'
     ])
   },
   /**
@@ -101,19 +103,20 @@ export default {
   },
   methods: {
     submitForm() {
-      console.log('Form submitted with data:')
-      console.log({
-        startLat: this.startLocation.geometry.location.lat(),
-        startLng: this.startLocation.geometry.location.lng(),
+      const requestParams = {
+        startLat: this.startLocationLat,
+        startLng: this.startLocationLng,
         distance: this.distance,
         shape: this.shape
-      })
+      }
+      this.getRoutes(requestParams)
     },
     handleLocationInput(place) {
       this.setStartLocation(place)
     },
     ...mapActions([
-      'setStartLocation'
+      'setStartLocation',
+      'getRoutes'
     ])
   }
 }
