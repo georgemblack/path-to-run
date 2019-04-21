@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -32,6 +33,8 @@ public class StravaSegment {
     private double endCoordinateLat;
     private double endCoordinateLng;
     private double distance;
+
+    @Column(columnDefinition="text")
     private String encodedPolyline;
 
     /**
