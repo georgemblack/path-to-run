@@ -12,7 +12,11 @@ $highlight-color: #1ba39c;
   padding: 0;
 }
 
-/* Primary Elements */
+/* Layout and Background */
+html {
+  height: 100%;
+}
+
 body {
   margin: 1em auto;
   padding: 0 1em 0 1em;
@@ -20,6 +24,7 @@ body {
   background: linear-gradient(70deg, #134e5e, #71b280);
 }
 
+/* Primary Elements */
 h1, h2, h3, p {
   font-family: $default-font-family;
   font-weight: $default-font-weight;
@@ -39,6 +44,7 @@ input {
   display: inline-block;
   width: 100%;
   padding: 0.5em 0.65em;
+  box-sizing: border-box;
   font-size: 1em;
   font-family: $default-font-family;
   font-weight: $default-font-weight;

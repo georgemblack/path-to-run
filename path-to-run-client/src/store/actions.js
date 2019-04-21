@@ -9,6 +9,9 @@ const getQueryString = (params) => {
 }
 
 export default {
+  setStartLocation: ({ commit }, place) => {
+    commit('SET_START_LOCATION', place);
+  },
   getRoutes: ({ commit }, params) => {
     commit('setRoutesRequestInProgress', true);
 

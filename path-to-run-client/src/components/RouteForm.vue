@@ -18,6 +18,11 @@
           <option value="3">3 miles</option>
           <option value="4">4 miles</option>
           <option value="5">5 miles</option>
+          <option value="6">6 miles</option>
+          <option value="7">7 miles</option>
+          <option value="8">8 miles</option>
+          <option value="9">9 miles</option>
+          <option value="10">10 miles</option>
         </select>
       </div>
       <div class="shape">
@@ -35,12 +40,12 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: 'RouteForm',
   data() {
     return {
-      startLat: '',
-      startLng: '',
       distance: '',
       shape: ''
     };
@@ -49,16 +54,24 @@ export default {
     submitForm() {
       console.log('Form submitted with data:');
       console.log({
-        startLat: this.startLat,
-        startLng: this.startLng,
+        startLat: this.startLocation.geometry.location.lat(),
+        startLng: this.startLocation.geometry.location.lng(),
         distance: this.distance,
         shape: this.shape
       });
     },
     handleLocationInput(place) {
-      this.startLat = place.geometry.location.lat();
-      this.startLng = place.geometry.location.lng();
-    }
+      this.setStartLocation(place);
+    },
+    ...mapActions([
+      'setStartLocation'
+    ])
+  },
+  computed: {
+    ...mapGetters([
+      'startLocation',
+      'startLocationExists'
+    ])
   },
   /**
    * Init Google Places autocomplete
@@ -77,8 +90,9 @@ export default {
 
 <style lang="scss" scoped>
 .route-form {
-  flex-grow: 1;
+  width: 18em;
   padding: 1em;
+  border-right: 1px solid rgba(0, 0, 0, 0.25);
   .distance {
     margin-top: 2em;
   }
