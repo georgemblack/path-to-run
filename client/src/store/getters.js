@@ -13,5 +13,6 @@ export default {
   startLocationExists: state => {
     return !isEmpty(state.startLocation)
   },
-  routes: state => state.routes
+  routes: state => state.routes,
+  routesRequestInProgress: state => state.routesRequestInProgress
 }

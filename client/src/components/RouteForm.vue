@@ -66,7 +66,6 @@
         <route-form-submit-button
           :distance="distance"
           :shape="shape"
-          :loading="requestInProgress"
         ></route-form-submit-button>
       </div>
     </form>
@@ -85,7 +84,6 @@ export default {
     return {
       distance: '',
       shape: '',
-      requestInProgress: false
     }
   },
   computed: {
@@ -115,10 +113,7 @@ export default {
         distance: this.distance,
         shape: this.shape
       }
-      this.requestInProgress = true
-      this.getRoutes(requestParams).then(() => {
-        this.requestInProgress = false
-      })
+      this.getRoutes(requestParams)
     },
     handleLocationInput(place) {
       this.setStartLocation(place)

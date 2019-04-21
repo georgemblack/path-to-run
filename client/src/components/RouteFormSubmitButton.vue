@@ -1,13 +1,13 @@
 <template>
   <button :disabled="!enabled">
+    <div v-show="!routesRequestInProgress">
+      Find Routes!
+    </div>
     <div
-      v-show="loading"
+      v-show="routesRequestInProgress"
       class="load-animation"
     >
       <div></div>
-    </div>
-    <div v-show="!loading">
-      Find Routes!
     </div>
   </button>
 </template>
@@ -26,10 +26,6 @@ export default {
       type: String,
       default: ''
     },
-    loading: {
-      type: Boolean,
-      default: false
-    }
   },
   computed: {
     enabled() {
@@ -37,11 +33,12 @@ export default {
         this.startLocationExists
         && this.distance !== ''
         && this.shape !== ''
-        && !this.loading
+        && !this.routesRequestInProgress
       )
     },
     ...mapGetters([
-      'startLocationExists'
+      'startLocationExists',
+      'routesRequestInProgress'
     ])
   }
 }

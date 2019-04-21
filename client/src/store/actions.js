@@ -13,6 +13,8 @@ export default {
     commit('SET_START_LOCATION', place)
   },
   getRoutes: ({ commit }, params) => {
+    commit('SET_ROUTES_REQUEST_IN_PROGRESS', true)
+
     const base = getBaseUrl()
     const qs = getQueryString(params)
     const url = `${base}/api/routes${qs}`
@@ -24,10 +26,11 @@ export default {
       .then(response => response.json())
       .then(response => {
         console.log(response)
-        commit('SET_ROUTES', response.routes)
+        commit('SET_ROUTES_REQUEST_IN_PROGRESS', false)
       })
       .catch(err => {
         console.log(`There was an error with the routes request: ${err}`)
+        commit('SET_ROUTES_REQUEST_IN_PROGRESS', false)
       })
   }
 }
