@@ -27,7 +27,7 @@ docker container run -d \
 
 Build client:
 ```
-cd path-to-run-client
+cd client
 npm install -g parcel-bundler
 npm install
 npm run build
@@ -35,12 +35,12 @@ npm run build
 
 Build server:
 ```
-cd path-to-run-server
+cd server
 mvn clean install
 ```
 
 Run application on 8080:
 ```
-cd path-to-run-server
+cd server
 java -jar target/*.jar
 ```

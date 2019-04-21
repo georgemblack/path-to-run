@@ -21,7 +21,7 @@ pipeline {
             stages {
                 stage('Install Dependencies') {
                     steps {
-                        dir('path-to-run-client') {
+                        dir('client') {
                             sh '''
                                 npm install -g parcel-bundler
                                 npm install
@@ -31,14 +31,14 @@ pipeline {
                 }
                 stage('Lint Client') {
                     steps {
-                        dir('path-to-run-client') {
+                        dir('client') {
                             sh 'npm run lint'
                         }
                     }
                 }
                 stage('Build Client') {
                     steps {
-                        dir('path-to-run-client') {
+                        dir('client') {
                             sh 'npm run build'
                         }
                     }
@@ -53,7 +53,7 @@ pipeline {
                 }
             }
             steps {
-                dir('path-to-run-server') {
+                dir('server') {
                     sh '''
                         mvn clean install \
                         -DSTRAVA_CLIENT_ID=${STRAVA_CLIENT_ID} \
@@ -66,7 +66,7 @@ pipeline {
         stage('Archive Artifact') {
             agent any
             steps {
-                archiveArtifacts 'path-to-run-server/target/*.jar'
+                archiveArtifacts 'server/target/*.jar'
             }
         }
         stage('Build Docker Image') {

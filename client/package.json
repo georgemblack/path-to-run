@@ -10,7 +10,7 @@
     "lint": "eslint src/**.{js,vue} src/**/*.{js,vue}",
     "lint:fix": "eslint src/**.{js,vue} src/**/*.{js,vue} --fix",
     "clean": "rm -rf dist node_modules *.log .cache",
-    "copy": "cp -r ./dist/* ../path-to-run-server/src/main/resources/public/"
+    "copy": "cp -r ./dist/* ../server/src/main/resources/public/"
   },
   "dependencies": {
     "lodash.isempty": "^4.4.0",
