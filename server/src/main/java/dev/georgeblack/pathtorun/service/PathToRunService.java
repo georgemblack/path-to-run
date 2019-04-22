@@ -14,28 +14,26 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PathToRunService {
-    Logger logger = LoggerFactory.getLogger(PathToRunService.class);
+  Logger logger = LoggerFactory.getLogger(PathToRunService.class);
 
-    @Autowired
-    StravaService stravaService;
+  @Autowired StravaService stravaService;
 
-    @Autowired
-    StravaSegmentRepository stravaSegmentRepository;
+  @Autowired StravaSegmentRepository stravaSegmentRepository;
 
-    @Autowired
-    RegionService regionService;
+  @Autowired RegionService regionService;
 
-    public RoutesResponse getRoutes(RoutesRequest routesRequest) {
-        logger.info(String.format("Started new Path to Run request: %s", routesRequest));
+  public RoutesResponse getRoutes(RoutesRequest routesRequest) {
+    logger.info(String.format("Started new Path to Run request: %s", routesRequest));
 
-        Region region = regionService.buildRegionFromStartingPoint(routesRequest.getStartLat(),
-                routesRequest.getStartLng(), routesRequest.getDistance());
-        StravaSegments segments = stravaService.getSegmentsInRegion(region);
+    Region region =
+        regionService.buildRegionFromStartingPoint(
+            routesRequest.getStartLat(), routesRequest.getStartLng(), routesRequest.getDistance());
+    StravaSegments segments = stravaService.getSegmentsInRegion(region);
 
-        for (StravaSegment segment: segments.getSegments()) {
-            stravaSegmentRepository.save(segment);
-        }
-
-        return new RoutesResponse("Route response status");
+    for (StravaSegment segment : segments.getSegments()) {
+      stravaSegmentRepository.save(segment);
     }
+
+    return new RoutesResponse("Route response status");
+  }
 }

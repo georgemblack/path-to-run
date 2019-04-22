@@ -13,16 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class PathToRunController {
-    Logger logger = LoggerFactory.getLogger(PathToRunController.class);
+  Logger logger = LoggerFactory.getLogger(PathToRunController.class);
 
-    @Autowired
-    PathToRunService pathToRunService;
+  @Autowired PathToRunService pathToRunService;
 
-    @GetMapping(
-        value = "/routes",
-        produces = "application/json"
-    )
-    public RoutesResponse routes(RoutesRequest routesRequest) {
-        return pathToRunService.getRoutes(routesRequest);
-    }
+  @GetMapping(value = "/routes", produces = "application/json")
+  public RoutesResponse routes(RoutesRequest routesRequest) {
+    return pathToRunService.getRoutes(routesRequest);
+  }
 }

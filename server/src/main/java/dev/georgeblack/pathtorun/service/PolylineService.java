@@ -10,34 +10,32 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Utility class that decodes a Google polyline
- */
+/** Utility class that decodes a Google polyline */
 @Service
 public class PolylineService {
-    Logger logger = LoggerFactory.getLogger(PolylineService.class);
+  Logger logger = LoggerFactory.getLogger(PolylineService.class);
 
-    public List<Coordinate> decodePolyline(String polyline) {
-        // decode to Google LatLng
-        List<LatLng> googleCoordinates = PolylineEncoding.decode(polyline);
+  public List<Coordinate> decodePolyline(String polyline) {
+    // decode to Google LatLng
+    List<LatLng> googleCoordinates = PolylineEncoding.decode(polyline);
 
-        // convert to Coordinate
-        List<Coordinate> coordinates = new ArrayList<>();
-        for (LatLng c : googleCoordinates) {
-            coordinates.add(new Coordinate(c.lat, c.lng));
-        }
-
-        logger.debug("Decoded polyline: " + polyline);
-        return coordinates;
+    // convert to Coordinate
+    List<Coordinate> coordinates = new ArrayList<>();
+    for (LatLng c : googleCoordinates) {
+      coordinates.add(new Coordinate(c.lat, c.lng));
     }
 
-    public String encodePolyline(List<Coordinate> coordinates) {
-        LatLng[] googleCoordinates = new LatLng[coordinates.size()];
-        for (int i = 0; i < coordinates.size(); i++) {
-            Coordinate coordinate = coordinates.get(i);
-            googleCoordinates[i] = new LatLng(coordinate.getLat(), coordinate.getLon());
-        }
+    logger.debug("Decoded polyline: " + polyline);
+    return coordinates;
+  }
 
-        return PolylineEncoding.encode(googleCoordinates);
+  public String encodePolyline(List<Coordinate> coordinates) {
+    LatLng[] googleCoordinates = new LatLng[coordinates.size()];
+    for (int i = 0; i < coordinates.size(); i++) {
+      Coordinate coordinate = coordinates.get(i);
+      googleCoordinates[i] = new LatLng(coordinate.getLat(), coordinate.getLon());
     }
+
+    return PolylineEncoding.encode(googleCoordinates);
+  }
 }

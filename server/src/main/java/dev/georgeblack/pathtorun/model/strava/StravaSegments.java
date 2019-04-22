@@ -10,5 +10,5 @@ import java.util.List;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StravaSegments {
-    private List<StravaSegment> segments;
+  private List<StravaSegment> segments;
 }

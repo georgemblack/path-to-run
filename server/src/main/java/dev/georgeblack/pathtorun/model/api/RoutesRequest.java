@@ -8,22 +8,21 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class RoutesRequest {
-    private double startLat;
-    private double startLng;
-    private int distance;
-    private String shape;
+  private double startLat;
+  private double startLng;
+  private int distance;
+  private String shape;
 
-    public String toString() {
-        return "{start: ["
-                + this.startLat
-                + ", "
-                + this.startLng
-                + "], distance: "
-                + this.distance
-                + ", "
-                + "shape: "
-                + this.shape
-                + "}";
-    }
-
+  public String toString() {
+    return "{start: ["
+        + this.startLat
+        + ", "
+        + this.startLng
+        + "], distance: "
+        + this.distance
+        + ", "
+        + "shape: "
+        + this.shape
+        + "}";
+  }
 }

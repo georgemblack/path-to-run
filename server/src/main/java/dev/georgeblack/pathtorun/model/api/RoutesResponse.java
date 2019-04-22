@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class RoutesResponse {
-    private String status;
+  private String status;
 }

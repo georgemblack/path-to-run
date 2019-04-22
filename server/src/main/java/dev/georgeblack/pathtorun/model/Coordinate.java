@@ -8,11 +8,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Coordinate {
-    private double lat;
-    private double lon;
+  private double lat;
+  private double lon;
 
-    @Override
-    public String toString() {
-        return "(" + lat + ", " + lon + ")";
-    }
+  @Override
+  public String toString() {
+    return "(" + lat + ", " + lon + ")";
+  }
 }

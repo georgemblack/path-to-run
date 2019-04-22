@@ -13,15 +13,15 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StravaTokenRefreshRequest implements Serializable {
-    @JsonProperty("client_id")
-    private String clientId;
+  @JsonProperty("client_id")
+  private String clientId;
 
-    @JsonProperty("client_secret")
-    private String clientSecret;
+  @JsonProperty("client_secret")
+  private String clientSecret;
 
-    @JsonProperty("grant_type")
-    private String grantType;
+  @JsonProperty("grant_type")
+  private String grantType;
 
-    @JsonProperty("refresh_token")
-    private String refreshToken;
+  @JsonProperty("refresh_token")
+  private String refreshToken;
 }
