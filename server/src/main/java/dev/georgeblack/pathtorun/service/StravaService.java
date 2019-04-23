@@ -1,7 +1,6 @@
 package dev.georgeblack.pathtorun.service;
 
 import dev.georgeblack.pathtorun.model.Region;
-import dev.georgeblack.pathtorun.model.strava.StravaSegment;
 import dev.georgeblack.pathtorun.model.strava.StravaSegments;
 import dev.georgeblack.pathtorun.model.strava.StravaTokenRefreshRequest;
 import dev.georgeblack.pathtorun.model.strava.StravaTokenRefreshResponse;
@@ -9,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.annotation.PostConstruct;
 
 @Repository
+@EnableScheduling
 public class StravaService {
   Logger logger = LoggerFactory.getLogger(StravaService.class);
 
@@ -66,7 +67,7 @@ public class StravaService {
     return response.getBody();
   }
 
-  @Scheduled(cron = "30 * * * *")
+  @Scheduled(cron = "0 0 * * * *")
   public void refreshAccessToken() {
     logger.info("Refreshing Strava API access token...");
 
