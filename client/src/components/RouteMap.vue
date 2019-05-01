@@ -28,6 +28,7 @@ export default {
     routes(newRoutes) {
       this.clearPolylines()
       newRoutes.forEach(route => {
+        /* eslint-disable-next-line no-undef */
         let newPolyline = new google.maps.Polyline({
           path: route.coordinates,
           strokeWeight: 5
