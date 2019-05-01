@@ -16,7 +16,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'RouteFormSubmitButton',
+  name: 'SubmitButton',
   props: {
     loading: {
       type: Boolean,

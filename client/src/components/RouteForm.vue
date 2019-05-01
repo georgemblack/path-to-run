@@ -63,11 +63,11 @@
         </select>
       </div>
       <div class="submit">
-        <route-form-submit-button
+        <submit-button
           :loading="requestInProgress"
           :distance="distance"
           :shape="shape"
-        ></route-form-submit-button>
+        ></submit-button>
       </div>
     </form>
   </div>
@@ -76,11 +76,11 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
-import RouteFormSubmitButton from'./RouteFormSubmitButton'
+import SubmitButton from'./SubmitButton'
 
 export default {
   name: 'RouteForm',
-  components: { RouteFormSubmitButton },
+  components: { SubmitButton },
   data() {
     return {
       requestInProgress: false,
