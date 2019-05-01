@@ -1,10 +1,10 @@
 <template>
   <button :disabled="!enabled">
-    <div v-show="!routesRequestInProgress">
+    <div v-show="!loading">
       Find Routes!
     </div>
     <div
-      v-show="routesRequestInProgress"
+      v-show="loading"
       class="load-animation"
     >
       <div></div>
@@ -18,6 +18,10 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'RouteFormSubmitButton',
   props: {
+    loading: {
+      type: Boolean,
+      default: false
+    },
     distance: {
       type: String,
       default: ''
@@ -33,13 +37,10 @@ export default {
         this.startLocationExists
         && this.distance !== ''
         && this.shape !== ''
-        && !this.routesRequestInProgress
+        && !this.loading
       )
     },
-    ...mapGetters([
-      'startLocationExists',
-      'routesRequestInProgress'
-    ])
+    ...mapGetters(['startLocationExists'])
   }
 }
 </script>

@@ -1,4 +1,4 @@
-package dev.georgeblack.pathtorun.model.api;
+package dev.georgeblack.pathtorun.model;
 
 import dev.georgeblack.pathtorun.model.Coordinate;
 import lombok.AllArgsConstructor;
@@ -11,5 +11,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 public class Route {
+    private String id;
     private List<Coordinate> coordinates;
 }

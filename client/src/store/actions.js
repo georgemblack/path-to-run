@@ -1,3 +1,9 @@
+import '@babel/polyfill'
+import {
+  SET_START_LOCATION,
+  SET_ROUTES
+} from './mutations'
+
 const getBaseUrl = () => {
   const base = window.location.host
   const scheme = (base.includes('localhost')) ? 'http' : 'https'
@@ -9,28 +15,24 @@ const getQueryString = (params) => {
 }
 
 export default {
-  setStartLocation: ({ commit }, place) => {
-    commit('SET_START_LOCATION', place)
+  setStartLocation: async ({ commit }, place) => {
+    commit(SET_START_LOCATION, place)
   },
-  getRoutes: ({ commit }, params) => {
-    commit('SET_ROUTES_REQUEST_IN_PROGRESS', true)
+  getRoutes: async ({ commit }, params) => {
 
     const base = getBaseUrl()
     const qs = getQueryString(params)
     const url = `${base}/api/routes${qs}`
     console.log(`Sending request to: ${url}`)
 
-    fetch(url, {
+    let response = await fetch(url, {
       method: 'GET'
     })
-      .then(response => response.json())
-      .then(response => {
-        console.log(response)
-        commit('SET_ROUTES_REQUEST_IN_PROGRESS', false)
-      })
-      .catch(err => {
-        console.log(`There was an error with the routes request: ${err}`)
-        commit('SET_ROUTES_REQUEST_IN_PROGRESS', false)
-      })
+
+    let responseBody = await response.json()
+
+    // TODO: error handling
+
+    commit(SET_ROUTES, responseBody.routes)
   }
 }

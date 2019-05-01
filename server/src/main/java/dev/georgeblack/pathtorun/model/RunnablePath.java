@@ -24,9 +24,9 @@ public class RunnablePath {
 
   public RunnablePath(List<Coordinate> coordinates, String polyline) {
     this.startLat = coordinates.get(0).getLat();
-    this.startLon = coordinates.get(0).getLon();
+    this.startLon = coordinates.get(0).getLng();
     this.endLat = coordinates.get(coordinates.size() - 1).getLat();
-    this.endLon = coordinates.get(coordinates.size() - 1).getLon();
+    this.endLon = coordinates.get(coordinates.size() - 1).getLng();
     this.polyline = polyline;
   }
 }

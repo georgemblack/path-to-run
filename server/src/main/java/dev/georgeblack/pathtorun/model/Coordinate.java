@@ -9,10 +9,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Coordinate {
   private double lat;
-  private double lon;
+  private double lng;
 
   @Override
   public String toString() {
-    return "(" + lat + ", " + lon + ")";
+    return "(" + lat + ", " + lng + ")";
   }
 }

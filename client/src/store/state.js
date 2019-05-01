@@ -7,6 +7,5 @@ export default {
   /**
    * Routes returned from Path to Run API
    */
-  routes: [],
-  routesRequestInProgress: false
+  routes: []
 }

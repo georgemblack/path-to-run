@@ -20,31 +20,31 @@
             1 mile
           </option>
           <option value="2">
-            2 miles
+            2 mile
           </option>
           <option value="3">
-            3 miles
+            3 mile
           </option>
           <option value="4">
-            4 miles
+            4 mile
           </option>
           <option value="5">
-            5 miles
+            5 mile
           </option>
           <option value="6">
-            6 miles
+            6 mile
           </option>
           <option value="7">
-            7 miles
+            7 mile
           </option>
           <option value="8">
-            8 miles
+            8 mile
           </option>
           <option value="9">
-            9 miles
+            9 mile
           </option>
           <option value="10">
-            10 miles
+            10 mile
           </option>
         </select>
       </div>
@@ -64,6 +64,7 @@
       </div>
       <div class="submit">
         <route-form-submit-button
+          :loading="requestInProgress"
           :distance="distance"
           :shape="shape"
         ></route-form-submit-button>
@@ -82,6 +83,7 @@ export default {
   components: { RouteFormSubmitButton },
   data() {
     return {
+      requestInProgress: false,
       distance: '',
       shape: '',
     }
@@ -107,13 +109,16 @@ export default {
   },
   methods: {
     submitForm() {
+      this.requestInProgress = true
       const requestParams = {
         startLat: this.startLocationLat,
         startLng: this.startLocationLng,
         distance: this.distance,
         shape: this.shape
       }
-      this.getRoutes(requestParams)
+      this.getRoutes(requestParams).then(() => {
+        this.requestInProgress = false
+      })
     },
     handleLocationInput(place) {
       this.setStartLocation(place)

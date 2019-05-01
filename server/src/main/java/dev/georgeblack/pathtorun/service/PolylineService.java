@@ -33,7 +33,7 @@ public class PolylineService {
     LatLng[] googleCoordinates = new LatLng[coordinates.size()];
     for (int i = 0; i < coordinates.size(); i++) {
       Coordinate coordinate = coordinates.get(i);
-      googleCoordinates[i] = new LatLng(coordinate.getLat(), coordinate.getLon());
+      googleCoordinates[i] = new LatLng(coordinate.getLat(), coordinate.getLng());
     }
 
     return PolylineEncoding.encode(googleCoordinates);
