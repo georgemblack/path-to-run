@@ -17,7 +17,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'routes'
+      'routes',
+      'region'
     ])
   },
   watch: {
@@ -35,6 +36,9 @@ export default {
         })
         this.addPolyline(newPolyline)
       })
+    },
+    region(newRegion) {
+      this.setViewport(newRegion)
     }
   },
   /**
@@ -59,6 +63,12 @@ export default {
         polyline.setMap(null)
       })
       this.polylines = []
+    },
+    setViewport(region) {
+      if (region.length !== 2) return
+      /* eslint-disable-next-line no-undef */
+      const bounds = new google.maps.LatLngBounds(...region)
+      this.map.fitBounds(bounds)
     }
   }
 }

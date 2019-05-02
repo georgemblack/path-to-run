@@ -1,5 +1,6 @@
 package dev.georgeblack.pathtorun.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,19 +10,20 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Region {
   private double southwestLat;
-  private double southwestLon;
+  private double southwestLng;
   private double northeastLat;
-  private double northeastLon;
+  private double northeastLng;
 
   public Region(double[] coordinates) {
     this.southwestLat = coordinates[0];
-    this.southwestLon = coordinates[1];
+    this.southwestLng = coordinates[1];
     this.northeastLat = coordinates[2];
-    this.northeastLon = coordinates[3];
+    this.northeastLng = coordinates[3];
   }
 
+  @JsonIgnore
   public String getBoundsAsDelimitedString() {
-    return southwestLat + "," + southwestLon + "," + northeastLat + "," + northeastLon;
+    return southwestLat + "," + southwestLng + "," + northeastLat + "," + northeastLng;
   }
 
   @Override
@@ -29,11 +31,11 @@ public class Region {
     return "[("
         + southwestLat
         + ", "
-        + southwestLon
+        + southwestLng
         + "), ("
         + northeastLat
         + ", "
-        + northeastLon
+        + northeastLng
         + ")]";
   }
 }

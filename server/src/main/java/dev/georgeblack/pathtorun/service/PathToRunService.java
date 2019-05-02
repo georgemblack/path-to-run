@@ -47,7 +47,7 @@ public class PathToRunService {
       routes.add(new Route(id, coordinates));
     });
 
-    return new RoutesResponse("OK", routes);
+    return new RoutesResponse(region, routes);
   }
 
   private void saveStravaSegments(StravaSegmentRepository repository, StravaSegments segments) {

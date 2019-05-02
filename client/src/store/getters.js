@@ -12,5 +12,6 @@ export default {
   startLocationExists: state => {
     return !isEmpty(state.startLocation)
   },
+  region: state => state.region,
   routes: state => state.routes,
 }

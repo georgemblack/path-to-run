@@ -1,7 +1,8 @@
 import '@babel/polyfill'
 import {
   SET_START_LOCATION,
-  SET_ROUTES
+  SET_ROUTES,
+  SET_REGION
 } from './mutations'
 
 const getBaseUrl = () => {
@@ -34,5 +35,6 @@ export default {
     // TODO: error handling
 
     commit(SET_ROUTES, responseBody.routes)
+    commit(SET_REGION, responseBody.region)
   }
 }
