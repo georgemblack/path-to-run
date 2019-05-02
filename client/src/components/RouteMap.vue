@@ -32,6 +32,7 @@ export default {
         /* eslint-disable-next-line no-undef */
         let newPolyline = new google.maps.Polyline({
           path: route.coordinates,
+          strokeColor: '#0984e3',
           strokeWeight: 5
         })
         this.addPolyline(newPolyline)
