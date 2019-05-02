@@ -10,15 +10,6 @@ export default {
     state.routes = payload
   },
   [SET_REGION](state, payload) {
-    state.region = [
-      {
-        lat: Number(payload.southwestLat),
-        lng: Number(payload.southwestLng)
-      },
-      {
-        lat: Number(payload.northeastLat),
-        lng: Number(payload.northeastLng)
-      }
-    ]
+    state.region = [payload.southwest, payload.northeast]
   }
 }

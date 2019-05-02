@@ -9,33 +9,41 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Region {
-  private double southwestLat;
-  private double southwestLng;
-  private double northeastLat;
-  private double northeastLng;
+  private Coordinate southwest;
+  private Coordinate northeast;
 
   public Region(double[] coordinates) {
-    this.southwestLat = coordinates[0];
-    this.southwestLng = coordinates[1];
-    this.northeastLat = coordinates[2];
-    this.northeastLng = coordinates[3];
+    this.southwest = new Coordinate(coordinates[0], coordinates[1]);
+    this.northeast = new Coordinate(coordinates[2], coordinates[3]);
+  }
+
+  public Region(
+      double southwestLat, double southwestLng, double northeastLat, double northeastLng) {
+    this.southwest = new Coordinate(southwestLat, southwestLng);
+    this.northeast = new Coordinate(northeastLat, northeastLng);
   }
 
   @JsonIgnore
   public String getBoundsAsDelimitedString() {
-    return southwestLat + "," + southwestLng + "," + northeastLat + "," + northeastLng;
+    return southwest.getLat()
+        + ","
+        + southwest.getLng()
+        + ","
+        + northeast.getLat()
+        + ","
+        + northeast.getLng();
   }
 
   @Override
   public String toString() {
     return "[("
-        + southwestLat
+        + southwest.getLat()
         + ", "
-        + southwestLng
+        + southwest.getLng()
         + "), ("
-        + northeastLat
+        + southwest.getLat()
         + ", "
-        + northeastLng
+        + southwest.getLng()
         + ")]";
   }
 }
