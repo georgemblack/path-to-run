@@ -29,9 +29,10 @@ public class PathToRunService {
     logger.info(String.format("Started new Path to Run request: %s", routesRequest));
     List<Route> routes = new ArrayList<>();
 
+    Coordinate startingPoint =
+        new Coordinate(routesRequest.getStartLat(), routesRequest.getStartLng());
     Region region =
-        RegionUtil.buildRegionFromStartingPoint(
-            routesRequest.getStartLat(), routesRequest.getStartLng(), routesRequest.getDistance());
+        RegionUtil.buildRegionFromStartingPoint(startingPoint, routesRequest.getDistance());
     StravaSegments segments = stravaService.getSegmentsInRegion(region);
 
     // save to db in new thread

@@ -1,9 +1,12 @@
 package dev.georgeblack.pathtorun.util;
 
+import dev.georgeblack.pathtorun.model.Coordinate;
 import dev.georgeblack.pathtorun.model.Region;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class RegionUtil {
@@ -18,17 +21,20 @@ public class RegionUtil {
    * North-East corner of bounding box.
    */
   public static Region buildRegionFromStartingPoint(
-      double startLat, double startLng, int distance) {
+          Coordinate start, int distance) {
     double oneMileInLongitudeDegrees =
-        (1.0 / (Math.cos(Math.toRadians(startLat)) * ONE_DEGREE_LONGITUDE_IN_MILES_AT_EQUATOR));
+        (1.0 / (Math.cos(Math.toRadians(start.getLat())) * ONE_DEGREE_LONGITUDE_IN_MILES_AT_EQUATOR));
 
-    double northLat = startLat + (distance * ONE_MILE_IN_LATITUDE_DEGREES);
-    double southLat = startLat - (distance * ONE_MILE_IN_LATITUDE_DEGREES);
+    double northLat = start.getLat() + (distance * ONE_MILE_IN_LATITUDE_DEGREES);
+    double southLat = start.getLat() - (distance * ONE_MILE_IN_LATITUDE_DEGREES);
 
-    double eastLng = startLng + (distance * oneMileInLongitudeDegrees);
-    double westLng = startLng - (distance * oneMileInLongitudeDegrees);
+    double eastLng = start.getLng() + (distance * oneMileInLongitudeDegrees);
+    double westLng = start.getLng() - (distance * oneMileInLongitudeDegrees);
 
-    Region region = new Region(southLat, westLng, northLat, eastLng);
+    Coordinate southwest = new Coordinate(southLat, westLng);
+    Coordinate northeast = new Coordinate(northLat, eastLng);
+
+    Region region = new Region(southwest, northeast, start);
     logger.info("Generated region: " + region);
     return region;
   }
