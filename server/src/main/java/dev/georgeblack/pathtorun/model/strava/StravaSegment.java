@@ -18,11 +18,11 @@ import java.util.List;
  * A single Strava Segment. This class is used to deserialize data from Strava API, and map data to
  * db entity.
  */
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Entity
 @Table(name = "strava_segments")
 public class StravaSegment {
   @Id private int id;

@@ -1,4 +1,4 @@
-package dev.georgeblack.pathtorun.service;
+package dev.georgeblack.pathtorun.util;
 
 import com.google.maps.internal.PolylineEncoding;
 import com.google.maps.model.LatLng;
@@ -12,10 +12,10 @@ import java.util.List;
 
 /** Utility class that decodes a Google polyline */
 @Service
-public class PolylineService {
-  Logger logger = LoggerFactory.getLogger(PolylineService.class);
+public class PolylineUtil {
+  static Logger logger = LoggerFactory.getLogger(PolylineUtil.class);
 
-  public List<Coordinate> decodePolyline(String polyline) {
+  public static List<Coordinate> decodePolyline(String polyline) {
     // decode to Google LatLng
     List<LatLng> googleCoordinates = PolylineEncoding.decode(polyline);
 
@@ -29,7 +29,7 @@ public class PolylineService {
     return coordinates;
   }
 
-  public String encodePolyline(List<Coordinate> coordinates) {
+  public static String encodePolyline(List<Coordinate> coordinates) {
     LatLng[] googleCoordinates = new LatLng[coordinates.size()];
     for (int i = 0; i < coordinates.size(); i++) {
       Coordinate coordinate = coordinates.get(i);
