@@ -36,9 +36,9 @@ public class Region {
         + ", "
         + southwest.getLng()
         + "), ("
-        + southwest.getLat()
+        + northeast.getLat()
         + ", "
-        + southwest.getLng()
+        + northeast.getLng()
         + ")]";
   }
 }
