@@ -76,11 +76,16 @@ pipeline {
                 sh 'docker image prune -f'
             }
         }
+        stage('Remove Existing Container from Dev') {
+            agent any
+            steps {
+                sh 'docker container stop ${PROJECT_NAME} || echo "No existing container... skipping"'
+                sh 'docker container rm ${PROJECT_NAME} || echo "No existing container... skipping"'
+            }
+        }
         stage('Deploy to Dev Environment') {
             agent any
             steps {
-                sh 'docker container stop ${PROJECT_NAME}'
-                sh 'docker container rm ${PROJECT_NAME}'
                 sh '''
                     docker run -d \
                     -e STRAVA_CLIENT_ID=${STRAVA_CLIENT_ID} \
